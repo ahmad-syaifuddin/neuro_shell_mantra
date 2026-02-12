@@ -1,6 +1,6 @@
 # ☣ NEUROSHELL DEPLOYMENT PROTOCOL ☣
 **Target:** Laravel Application (Client Project)  
-**Objective:** Remote Control, Licensing Enforcement & Dead Man's Switch  
+**Objective:** Remote Control, Licensing Enforcement & Dead Hand Switch  
 **Version:** 2.0 (Barikit Edition)
 
 ---
