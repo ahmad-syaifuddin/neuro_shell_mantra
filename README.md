@@ -211,7 +211,7 @@ public function handle(Request $request, Closure $next): Response
 
 ## 🔒 PHASE 7: FINAL LOCK (Bootstrap/Kernel)
 Aktifkan Middleware secara Global agar setiap request diperiksa.
-Jika Laravel 11 `(bootstrap/app.php)`:
+Jika **Laravel 11** `(bootstrap/app.php)`:
 ```php
 ->withMiddleware(function (Middleware $middleware) {
     // Append agar jalan di setiap request
@@ -219,7 +219,7 @@ Jika Laravel 11 `(bootstrap/app.php)`:
 })
 ```
 
-Jika Laravel 10 `(app/Http/Kernel.php)`:
+Jika **Laravel 10** `(app/Http/Kernel.php)`:
 Masukkan ke dalam array $middleware (Global Middleware).
 ```php
 protected $middleware = [
