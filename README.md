@@ -175,3 +175,63 @@ public function boot(): void
 
 ## 🛡️ PHASE 5: THE ENFORCER (User Model)
 Buka app/Models/User.php
+Tambahkan method boot() ini di dalam class User. Ini adalah pertahanan terakhir jika Provider dihapus.
+```php
+protected static function boot()
+{
+    parent::boot();
+
+    static::retrieved(function ($model) {
+        // Cek Token Kehidupan dari Trait
+        if (! app()->bound('core_kernel_hash')) {
+            session()->flush();
+            // Error Palsu yang membingungkan (Database Collation)
+            throw new \Exception('Database Collation Mismatch: Integrity constraint violation.');
+        }
+    });
+}
+```
+
+## 🚧 PHASE 6: GLOBAL GUARD (Middleware)
+- Jalankan: php artisan make:middleware OptimizeSession
+- Isi file app/Http/Middleware/OptimizeSession.php:
+
+```php
+public function handle(Request $request, Closure $next): Response
+{
+    if (!app()->bound('core_kernel_hash')) {
+        abort(500, 'Critical Error: Kernel driver configuration missing.');
+    }
+    return $next($request);
+}
+```
+
+## 🔒 PHASE 7: FINAL LOCK (Bootstrap/Kernel)
+Aktifkan Middleware secara Global agar setiap request diperiksa.
+Jika Laravel 11 (bootstrap/app.php):
+```php
+->withMiddleware(function (Middleware $middleware) {
+    // Append agar jalan di setiap request
+    $middleware->append(\App\Http\Middleware\OptimizeSession::class);
+})
+```
+
+Jika Laravel 10 (app/Http/Kernel.php):
+Masukkan ke dalam array $middleware (Global Middleware).
+```php
+protected $middleware = [
+    // ...
+    \App\Http\Middleware\OptimizeSession::class,
+];
+```
+
+## ✅ CHECKLIST PENGUJIAN
+Lakukan tes ini sebelum menyerahkan ke client:
+
+- [ ] Test Active: Buka aplikasi client. Harus normal. Cek Dashboard NeuroShell -> Logs harus masuk.
+
+- [ ] Test Blocked: Ubah status di Dashboard jadi Blocked. Refresh aplikasi client. Harus muncul layar merah.
+
+- [ ] Test Tampering: Comment baris trigger di AppServiceProvider. Refresh aplikasi/Login. Harus muncul error "Critical Error: Kernel driver..." atau "Database Collation Mismatch".
+
+- [ ] Test Cache Driver: Pastikan .env client menggunakan CACHE_DRIVER=file.
