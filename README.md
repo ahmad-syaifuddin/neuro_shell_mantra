@@ -13,7 +13,7 @@
     * **License Key:** Buat key unik (e.g., `JKS-2026-X99`).
     * **Date:** (Opsional) Set tanggal "Time Bomb" (jatuh tempo).
 3.  Setelah kartu project muncul, klik tombol **Copy Config** (Ikon Copy).
-    * *Simpan konfigurasi Array PHP `$rawUrl` dan `$rawKey` yang sudah terenkripsi di Notepad sementara.*
+    * *Simpan konfigurasi Array PHP `$rawUrl` dan `$rawKey` yang sudah terenkripsi di Notepad/Google Keep sementara.*
 
 ---
 
