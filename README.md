@@ -19,7 +19,7 @@
 
 ## 🧬 PHASE 2: IMPLANTING THE CORE (Trait)
 
-Buat file baru di Laravel Client: `app/Traits/SystemIntegrityTrait.php`.
+Buat file baru di Laravel Client: `app/Traits/SystemIntegrityTrait.php`
 
 Paste kode di bawah ini. **PENTING:** Ganti `$rawUrl` dan `$rawKey` dengan data dari **Phase 1**.
 
