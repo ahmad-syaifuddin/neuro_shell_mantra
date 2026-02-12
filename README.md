@@ -232,6 +232,6 @@ Lakukan tes ini sebelum menyerahkan ke client:
 
 - [ ] Test Blocked: Ubah status di Dashboard jadi Blocked. Refresh aplikasi client. Harus muncul layar merah.
 
-- [ ] Test Tampering: Comment baris trigger di AppServiceProvider. Refresh aplikasi/Login. Harus muncul error "Critical Error: Kernel driver..." atau "Database Collation Mismatch".
+- [ ] Test Tampering: Comment baris trigger di `AppServiceProvider`. Refresh aplikasi/Login. Harus muncul error "Critical Error: Kernel driver..." atau "Database Collation Mismatch".
 
-- [ ] Test Cache Driver: Pastikan .env client menggunakan CACHE_DRIVER=file.
+- [ ] Test Cache Driver: Pastikan `.env` client menggunakan `CACHE_DRIVER=file`.
