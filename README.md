@@ -149,10 +149,10 @@ resources/views/errors/maintenance.blade.php
 ---
 
 ## 🔌 PHASE 4: WIRING & OBFUSCATION (Provider)
-Buka app/Providers/AppServiceProvider.php
-- Tambahkan use App\Traits\SystemIntegrityTrait; di bagian atas.
-- Tambahkan use SystemIntegrityTrait; di dalam class.
-- Update method boot():
+Buka `app/Providers/AppServiceProvider.php`
+- Tambahkan `use App\Traits\SystemIntegrityTrait;` di bagian atas.
+- Tambahkan `use SystemIntegrityTrait;` di dalam class.
+- Update `method boot():`
 
 ```php
 public function boot(): void
@@ -174,8 +174,8 @@ public function boot(): void
 ```
 
 ## 🛡️ PHASE 5: THE ENFORCER (User Model)
-Buka app/Models/User.php
-Tambahkan method boot() ini di dalam class User. Ini adalah pertahanan terakhir jika Provider dihapus.
+Buka `app/Models/User.php`
+Tambahkan `method boot()` ini di dalam `class User`. Ini adalah pertahanan terakhir jika Provider dihapus.
 ```php
 protected static function boot()
 {
@@ -193,8 +193,11 @@ protected static function boot()
 ```
 
 ## 🚧 PHASE 6: GLOBAL GUARD (Middleware)
-- Jalankan: php artisan make:middleware OptimizeSession
-- Isi file app/Http/Middleware/OptimizeSession.php:
+- Jalankan:
+```
+php artisan make:middleware OptimizeSession
+```
+- Isi file `app/Http/Middleware/OptimizeSession.php`:
 
 ```php
 public function handle(Request $request, Closure $next): Response
@@ -208,7 +211,7 @@ public function handle(Request $request, Closure $next): Response
 
 ## 🔒 PHASE 7: FINAL LOCK (Bootstrap/Kernel)
 Aktifkan Middleware secara Global agar setiap request diperiksa.
-Jika Laravel 11 (bootstrap/app.php):
+Jika Laravel 11 `(bootstrap/app.php)`:
 ```php
 ->withMiddleware(function (Middleware $middleware) {
     // Append agar jalan di setiap request
@@ -216,7 +219,7 @@ Jika Laravel 11 (bootstrap/app.php):
 })
 ```
 
-Jika Laravel 10 (app/Http/Kernel.php):
+Jika Laravel 10 `(app/Http/Kernel.php)`:
 Masukkan ke dalam array $middleware (Global Middleware).
 ```php
 protected $middleware = [
