@@ -146,8 +146,12 @@ resources/views/errors/maintenance.blade.php
 </html>
 ```
 
-Preview gambar versi 1:
-![Logo Proyek](./assets/view_error_1.png)
+### Preview Gambar Versi 1
+
+<p align="center">
+  <img src="./assets/view_error_1.png" alt="Preview Gambar Versi 1" width="600px" />
+</p>
+
 
 
 ---
