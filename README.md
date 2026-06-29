@@ -146,6 +146,10 @@ resources/views/errors/maintenance.blade.php
 </html>
 ```
 
+Preview gambar versi 1:
+![Logo Proyek](./assets/view_error_1.png)
+
+
 ---
 
 ## 🔌 PHASE 4: WIRING & OBFUSCATION (Provider)
